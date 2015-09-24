@@ -36,12 +36,7 @@ App = React.createClass({
     // Find the text field via the React ref
     var text = React.findDOMNode(this.refs.textInput).value.trim();
 
-    Tasks.insert({
-      text: text,
-      createdAt: new Date(), // current time,
-      owner: Meteor.userId(),
-      username: Meteor.user().username
-    });
+    Meteor.call("addTask", text);
 
     // Clear form
     React.findDOMNode(this.refs.textInput).value = "";
